@@ -3,3 +3,5 @@
 attention de bien faire un condition pour le ca ou on a par exmple "bobobo" bo -> cela cree en segfault mm si la fonction marche de maniere generale
 
 continuer apres striteri
+
+voir si le nouveau split fonctionne bien ou pas =====> doit on finir par un null??

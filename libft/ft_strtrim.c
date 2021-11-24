@@ -6,21 +6,11 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 11:44:55 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/24 11:45:31 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/24 13:29:29 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 static int	ft_charisset(char c, char const *set)
 {

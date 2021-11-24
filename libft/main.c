@@ -2,6 +2,39 @@
 #include <bsd/string.h>
 #include "libft.h"
 
+static char	ft_maj(unsigned int c, char a)
+{
+	(void)c;
+	a = a - 32;
+	return (a);
+}
+
+static int	ft_wordcount(char const *s, char c)
+{
+	int	i;
+	int	word;
+	int	count;
+
+	count = 0;
+	word = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			word = 0;
+		if (word == 0)
+		{
+			if (s[i] != c && word == 0)
+			{
+				word = 1;
+				count++;
+			}
+		}
+		i++;
+	}
+	return (count);
+}
+
 int ft_strcmp(char *s1, char *s2)
 {
 	int i;
@@ -20,7 +53,7 @@ int main(int ac, char **av)
 	j = 0;
 	i = 1;
 	(void)ac;
-	//  char *s1;
+	  char *s9;
 	//  char *s2;
 
 	if ((ft_strcmp(av[1], "isalpha") == 0) || ft_strcmp(av[1], "all") == 0)
@@ -256,24 +289,27 @@ int main(int ac, char **av)
 	if ((ft_strcmp(av[1],"substr") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_SUBSTR===========\n");
-
-      printf("perso =%s\n", ft_substr(av[2], (unsigned int)atoi(av[3]), (size_t)atoi(av[4])));
-      free(ft_substr(av[2], (unsigned int)atoi(av[3]), (size_t)atoi(av[4])));
+		s9 = ft_substr(av[2], (unsigned int)atoi(av[3]), (size_t)atoi(av[4]));
+      printf("perso =%s\n", s9);
+      free(s9);
   }
+
   if ((ft_strcmp(av[1],"strjoin") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_STRJOIN===========\n");
-
-      printf("perso =%s\n", ft_strjoin(av[2], av[3]));
-      free(ft_strjoin(av[2], av[3]));
+	s9 = ft_strjoin(av[2], av[3]);
+      printf("perso =%s\n", s9);
+      free(s9);
   }
+
   if ((ft_strcmp(av[1],"strtrim") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_STRTRIM===========\n");
-
-      printf("perso =%s\n", ft_strtrim(av[2], av[3]));
-      free(ft_strtrim(av[2], av[3]));
+	s9 = ft_strtrim(av[2], av[3]);
+      printf("perso =%s\n", s9);
+      free(s9);
   }
+
   if ((ft_strcmp(av[1],"split") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_SPLIT===========\n");
@@ -289,6 +325,7 @@ int main(int ac, char **av)
     }
     free(tab);
   }
+
   if ((ft_strcmp(av[1],"itoa") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_ITOA===========\n");
@@ -296,6 +333,11 @@ int main(int ac, char **av)
       printf("%s\n", ft_itoa(atoi(av[2])));
       free(ft_itoa(atoi(av[2])));
   }
+if ((ft_strcmp(av[1],"strmapi") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_STRMAPI===========\n");
 
+	printf("%s\n", ft_strmapi(av[2], &ft_maj)); 
+  }
 	return (0);
 }
