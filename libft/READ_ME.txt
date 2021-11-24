@@ -16,6 +16,8 @@ continuer netooyage a parir de atoi
 LINUX=
 PB AVEC FONCTION = strlcat, strlcpy, strnstr,strdup
 
+CALLOC A TESTER !!!!!
+
 ATTENTION STRCHR avec "" 0  ===> check si on doit enlever le if pour proteger ou pas
 
 MEMCHR ne marche pas pour ce cas la ./a.out memcmp "salut ca va" "salutt ttt" 6 ou 9 10 11 etc

@@ -1,7 +1,32 @@
-/*
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/24 10:29:46 by gmary             #+#    #+#             */
+/*   Updated: 2021/11/24 10:52:26 by gmary            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdlib.h>
-void  *calloc(size_t count, size_t size)
+#include "libft.h"
+
+void	*ft_calloc(size_t nmemb, size_t size)
 {
+	int	*tab;
+	int		i;
+
+	i = 0;
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+	tab = malloc(sizeof(size) * nmemb);
+	if (!tab)
+		return(NULL);
+	while (i < nmemb)
+	{
+		tab[i] = 0;
+		i++;
+	}
+	return (tab);
 }
-*/
