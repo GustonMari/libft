@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <bsd/string.h>
 #include "libft.h"
+#include <string.h>
+#include <ctype.h>
 
 static char	ft_maj(unsigned int c, char a)
 {
 	(void)c;
 	a = a - 32;
 	return (a);
+}
+
+static void	ft_zarb(unsigned int i, char *s)
+{
+	(void)i;
+	s -= 32;
 }
 
 static int	ft_wordcount(char const *s, char c)
@@ -339,5 +347,44 @@ if ((ft_strcmp(av[1],"strmapi") == 0) || ft_strcmp(av[1],"all") == 0)
 
 	printf("%s\n", ft_strmapi(av[2], &ft_maj)); 
   }
+  if ((ft_strcmp(av[1],"striteri") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_STRITERI===========\n");
+	s9 = av[2];
+	ft_striteri(s9, &ft_zarb);
+	printf("%s\n", s9); 
+  }
+  if ((ft_strcmp(av[1],"putchar") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_PUTCHAR===========\n");
+	ft_putchar_fd(av[2][0], atoi(av[3])); 
+  }
+  if ((ft_strcmp(av[1],"putstr") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_PUTSTR===========\n");
+	ft_putstr_fd(av[2], atoi(av[3])); 
+  }
+  if ((ft_strcmp(av[1],"putendl") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_PUTENDL===========\n");
+	ft_putendl_fd(av[2], atoi(av[3])); 
+  }
+  if ((ft_strcmp(av[1],"putnbr") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_PUTNBR===========\n");
+	ft_putnbr_fd(atoi(av[2]), atoi(av[3])); 
+  }
+
+
+//=======================BONUS==================================================================
+
+if ((ft_strcmp(av[1],"lstnew") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTNEW===========\n");
+	t_list	*test;
+	//char s[] = "salut toi ";
+	test = ft_lstnew(av[2]);
+	printf("test: %s \n", (char*)test->content);  }
+
 	return (0);
 }
