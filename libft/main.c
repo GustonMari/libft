@@ -11,6 +11,16 @@ static char	ft_maj(unsigned int c, char a)
 	return (a);
 }
 
+static void	ft_del(void *s)
+{
+	//free(s);
+}
+
+static void	ft_cheucheu(void *s)
+{
+	*(int *)s += 1;
+}
+
 static void	ft_zarb(unsigned int i, char *s)
 {
 	(void)i;
@@ -162,7 +172,7 @@ int main(int ac, char **av)
 		printf("==========TEST_MEMCPY===========\n");
 		printf("dest=%s\nsrc=%s\nperso=%s\nreal =%s\n", av[2], av[3], (char *)ft_memcpy(av[2], av[3], (size_t)atoi(av[4])), (char *)memcpy(av[2], av[3], (size_t)atoi(av[4])));
 	}
-	//MEMMOVE PAS FAIT CAR PAS COMPRIS
+
 	if ((ft_strcmp(av[1], "memmove") == 0) ||
 		ft_strcmp(av[1], "all") == 0)
 	{
@@ -384,7 +394,149 @@ if ((ft_strcmp(av[1],"lstnew") == 0) || ft_strcmp(av[1],"all") == 0)
 	t_list	*test;
 	//char s[] = "salut toi ";
 	test = ft_lstnew(av[2]);
-	printf("test: %s \n", (char*)test->content);  }
+	printf("test: %s \n", (char*)test->content);  
+	}
+	if ((ft_strcmp(av[1],"lstfront") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTFRONT===========\n");
+	t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
 
+	head = ft_lstnew(av[2]);
+	new2 = ft_lstnew(av[3]);
+	new3 = ft_lstnew(av[4]);
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	while (head)
+	{
+		printf(" %s\n ", (char *)(head->content));
+		head = head->next;
+	}
+	}
+	if ((ft_strcmp(av[1],"lstsize") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTSIZE===========\n");
+	t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
+
+	head = ft_lstnew("2");
+	new2 = ft_lstnew("3");
+	new3 = ft_lstnew("1");
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	printf("%d\n", ft_lstsize(head));
+	}
+	if ((ft_strcmp(av[1],"lstlast") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTLAST===========\n");
+	t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
+	t_list	*temp;
+
+	head = ft_lstnew("3");
+	new2 = ft_lstnew("2");
+	new3 = ft_lstnew("1");
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	temp = ft_lstlast(head);
+	printf("%s\n", (char *)temp->content);
+	}
+	if ((ft_strcmp(av[1],"lstback") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTBACK===========\n");
+	t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
+	t_list	*new4;
+
+	head = ft_lstnew("3");
+	new2 = ft_lstnew("2");
+	new3 = ft_lstnew("1");
+	new4 = ft_lstnew("4");
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	ft_lstadd_back(&head, new4);
+	while (head)
+	{
+		printf(" %s\n ", (char *)(head->content));
+		head = head->next;
+	}
+	}
+	if ((ft_strcmp(av[1],"lstdel") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTDEL===========\n");
+	t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
+	t_list	*new4;
+
+	head = ft_lstnew("3");
+	new2 = ft_lstnew("2");
+	new3 = ft_lstnew("1");
+	new4 = ft_lstnew("4");
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	ft_lstadd_back(&head, new4);
+	ft_lstdelone(new4,&ft_del);
+	while (head)
+	{
+		printf(" %s\n ", (char *)(head->content));
+		head = head->next;
+	}
+	}
+	if ((ft_strcmp(av[1],"lstclear") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTCLEAR===========\n");
+t_list	*head;
+	t_list	*new2;
+	t_list	*new3;
+	t_list	*new4;
+
+	head = ft_lstnew("3");
+	new2 = ft_lstnew("2");
+	new3 = ft_lstnew("1");
+	new4 = ft_lstnew("4");
+	ft_lstadd_front(&head, new2);
+	ft_lstadd_front(&head, new3);
+	ft_lstadd_back(&head, new4);
+	ft_lstclear(&head,&ft_del);
+	while (head)
+	{
+		printf(" %s\n ", (char *)(head->content));
+		head = head->next;
+	}
+	}
+	if ((ft_strcmp(av[1],"lstiteri") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTITERI===========\n");
+	t_list	*head;
+	t_list	*new;
+	int a = 1;
+	int b = 2;
+	int c = 3;
+	int d = 4;
+	void *p = &a;
+
+	head = ft_lstnew(p);
+	p = &b;
+	new = ft_lstnew(p);
+	ft_lstadd_front(&head, new);
+	p = &c;
+	new = ft_lstnew(p);
+	ft_lstadd_front(&head, new);
+	p = &d;
+	new = ft_lstnew(p);
+	ft_lstadd_back(&head, new);
+	ft_lstiter(head,&ft_cheucheu);
+	
+	while (head)
+	{
+		printf(" %d\n ", *(int *)(head->content));
+		head = head->next;
+	}
+  }
 	return (0);
 }
