@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:05:45 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/24 14:21:43 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/26 11:12:54 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,14 @@ static int	ft_wordlen(char const *s, char c)
 	return (i + 1);
 }
 
-char	**ft_split(char const *s, char c)
+static char	**ft_cut(char const *s, char **split, char c)
 {
 	int		i;
 	int		j;
 	int		l;
-	char	**split;
 
 	j = -1;
-	//j = 0;
 	i = 0;
-	split = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
 	while (++j < ft_wordcount(s, c))
 	{
 		l = 0;
@@ -75,8 +72,17 @@ char	**ft_split(char const *s, char c)
 			}
 			split[j][l] = '\0';
 		}
-		//j++;
 	}
 	split[j] = 0;
 	return (split);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+
+	split = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
+	if (!split)
+		return (NULL);
+	return (ft_cut(s, split, c));
 }

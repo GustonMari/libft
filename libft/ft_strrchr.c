@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 17:59:24 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/23 18:09:22 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/26 13:31:47 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 	i = 0;
 	while (s2[i])
 		i++;
-	while (i != 0)
+	while (i >= 0)
 	{
 		if (s2[i] == (char)c)
 			return (&s2[i]);

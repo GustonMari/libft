@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 10:29:46 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/26 09:55:08 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/26 10:35:21 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 		return (NULL);
 	tab = malloc(size * nmemb);
 	if (!tab)
-		return(NULL);
+		return (NULL);
 	ft_bzero(tab, nmemb * size);
 	return (tab);
 }

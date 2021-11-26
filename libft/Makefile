@@ -1,5 +1,3 @@
-CC= gcc
-CFLAGS= -Wall -Wextra -Werror
 SRC= ft_atoi.c \
 	ft_bzero.c \
 	ft_calloc.c \
@@ -33,8 +31,8 @@ SRC= ft_atoi.c \
 	ft_strtrim.c \
 	ft_substr.c \
 	ft_tolower.c \
-	ft_toupper.c \
-BONUS= ft_lstadd_back.c \
+	ft_toupper.c 
+SRC_BONUS = ft_lstadd_back.c \
 	ft_lstadd_front.c \
 	ft_lstclear.c \
 	ft_lstdelone.c \
@@ -42,30 +40,40 @@ BONUS= ft_lstadd_back.c \
 	ft_lstlast.c \
 	ft_lstmap.c \
 	ft_lstnew.c \
-	ft_lstsize.c \
-BONUS_OBJ= ${BONUS:.c=.o}
-OBJ= ${SRC:.c=.o}
-INCLUDES= includes
-OUTPUT= libft.a
+	ft_lstsize.c 
+CC= gcc
 
-${OUTPUT}: ${OBJ}
-	ar -rcs ${OUTPUT} ${OBJ}
+CFLAGS= -Wall -Wextra -Werror
 
-${OBJ}: ${SRC}
-	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
+OBJ_BONUS = ${SRC_BONUS:.c=.o}
 
-${BONUS_OBJ}: ${SRC}
-	${CC} ${CFLAGS} -c $< -o $@ -I ${INCLUDES}
+RM = rm -f
 
-all: ${OUTPUT}
+NAME = libft.a
 
-bonus: ${OBJ} ${BONUS_OBJ}
-	ar -rcs ${OUTPUT} ${OBJ} ${BONUS_OBJ}
+CC = gcc
 
-clean: ${OBJ}
-	rm -r ${OBJ}
+CFLAGS = -Wall -Wextra -Werror
+
+OBJS = ${SRC:.c=.o}
+
+all: ${NAME}
+
+${NAME}: ${OBJS}
+	ar -rcs ${NAME} ${OBJS}
+
+.o: .c
+	${CC} ${CFLAGS} -c $< -o $@ 
+
+bonus : ${OBJS} ${OBJ_BONUS}
+	ar -rcs ${NAME} ${OBJS} ${OBJ_BONUS}
+
+clean:
+	${RM} ${OBJS}
 
 fclean: clean
-	rm -r ${OUTPUT}
+	${RM} ${NAME}
 
-re: clean fclean all
+re: fclean all
+
+.PHONY: all clean fclean bonus re
