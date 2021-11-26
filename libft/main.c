@@ -16,6 +16,12 @@ static void	ft_del(void *s)
 	//free(s);
 }
 
+static void	*ft_cheucheucheu(void *s)
+{
+	*(int *)s += '0';
+	return (s);
+}
+
 static void	ft_cheucheu(void *s)
 {
 	*(int *)s += 1;
@@ -465,6 +471,7 @@ if ((ft_strcmp(av[1],"lstnew") == 0) || ft_strcmp(av[1],"all") == 0)
 		head = head->next;
 	}
 	}
+	
 	if ((ft_strcmp(av[1],"lstdel") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_LSTDEL===========\n");
@@ -487,6 +494,7 @@ if ((ft_strcmp(av[1],"lstnew") == 0) || ft_strcmp(av[1],"all") == 0)
 		head = head->next;
 	}
 	}
+	
 	if ((ft_strcmp(av[1],"lstclear") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_LSTCLEAR===========\n");
@@ -509,6 +517,7 @@ t_list	*head;
 		head = head->next;
 	}
 	}
+	
 	if ((ft_strcmp(av[1],"lstiteri") == 0) || ft_strcmp(av[1],"all") == 0)
   {
     printf("==========TEST_LSTITERI===========\n");
@@ -532,6 +541,34 @@ t_list	*head;
 	ft_lstadd_back(&head, new);
 	ft_lstiter(head,&ft_cheucheu);
 	
+	while (head)
+	{
+		printf(" %d\n ", *(int *)(head->content));
+		head = head->next;
+	}
+  }
+  	if ((ft_strcmp(av[1],"lstmap") == 0) || ft_strcmp(av[1],"all") == 0)
+  {
+    printf("==========TEST_LSTMAP===========\n");
+t_list	*head;
+	t_list	*new;
+	int a = 1;
+	int b = 2;
+	int c = 3;
+	int d = 4;
+	void *p = &a;
+
+	head = ft_lstnew(p);
+	p = &b;
+	new = ft_lstnew(p);
+	ft_lstadd_front(&head, new);
+	p = &c;
+	new = ft_lstnew(p);
+	ft_lstadd_front(&head, new);
+	p = &d;
+	new = ft_lstnew(p);
+	ft_lstadd_back(&head, new);
+	ft_lstmap(head,&ft_cheucheucheu, &ft_del);
 	while (head)
 	{
 		printf(" %d\n ", *(int *)(head->content));

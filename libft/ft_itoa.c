@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 14:30:06 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/24 14:36:23 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/26 09:57:31 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,8 @@ static char	*ft_zero(char *str)
 	return (str);
 }
 
-char	*ft_itoa(int n)
+static char	*ft_conv(char *str, long nbr, int i, int n)
 {
-	long	nbr;
-	char	*str;
-	int		i;
-
-	i = 0;
-	nbr = (long)n;
-	str = malloc(sizeof(char) * (ft_lennum(n) + 1));
-	if (nbr == 0)
-		return (ft_zero(str));
-	if (nbr < 0)
-		nbr *= -1;
 	while (nbr > 0)
 	{
 		str[i] = (nbr % 10) + '0';
@@ -86,5 +75,23 @@ char	*ft_itoa(int n)
 	}
 	else
 		str[i] = '\0';
-	return (ft_strrev(str, n));
+	return (str);
+}
+
+char	*ft_itoa(int n)
+{
+	long	nbr;
+	char	*str;
+	int		i;
+
+	i = 0;
+	nbr = (long)n;
+	str = malloc(sizeof(char) * (ft_lennum(n) + 1));
+	if (!str)
+		return (NULL);
+	if (nbr == 0)
+		return (ft_zero(str));
+	if (nbr < 0)
+		nbr *= -1;
+	return (ft_strrev(ft_conv(str, nbr, i, n), n));
 }
