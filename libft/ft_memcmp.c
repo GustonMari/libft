@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:45:27 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/24 17:38:32 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/29 11:02:37 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	if (n == 0)
 		return (0);
-	while (s3[i] && s3[i] == s4[i] && i < (n - 1))
+	while (s3[i] == s4[i] && i < (n - 1))
 	{
 		i++;
 	}

@@ -55,25 +55,29 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-OBJS = ${SRC:.c=.o}
+OBJ = ${SRC:.c=.o}
 
 all: ${NAME}
 
-${NAME}: ${OBJS}
-	ar -rcs ${NAME} ${OBJS}
+${NAME}: ${OBJ}
+	ar -rcs ${NAME} ${OBJ}
 
 .o: .c
 	${CC} ${CFLAGS} -c $< -o $@ 
 
-bonus : ${OBJS} ${OBJ_BONUS}
-	ar -rcs ${NAME} ${OBJS} ${OBJ_BONUS}
+bonus : ${OBJ} ${OBJ_BONUS}
+	ar -rcs ${NAME} ${OBJ} ${OBJ_BONUS}
 
 clean:
-	${RM} ${OBJS}
+	${RM} ${OBJ} ${OBJ_BONUS}
 
 fclean: clean
 	${RM} ${NAME}
 
 re: fclean all
+
+so:
+	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SRC)
+	gcc -nostartfiles -shared -o libft.so $(OBJ) $(OBJ_BONUS)
 
 .PHONY: all clean fclean bonus re

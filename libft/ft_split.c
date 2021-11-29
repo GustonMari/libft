@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:05:45 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/26 11:12:54 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/29 13:52:11 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ static int	ft_wordlen(char const *s, char c)
 	return (i + 1);
 }
 
-static char	**ft_cut(char const *s, char **split, char c)
+static char	**ft_cut(char const *s, char **split, char c, int i)
 {
-	int		i;
 	int		j;
 	int		l;
 
 	j = -1;
-	i = 0;
 	while (++j < ft_wordcount(s, c))
 	{
 		l = 0;
@@ -64,6 +62,8 @@ static char	**ft_cut(char const *s, char **split, char c)
 		if (s[i] != c)
 		{
 			split[j] = malloc(sizeof(char) * ft_wordlen(&s[i], c));
+			if (!split[j])
+				return (NULL);
 			while (s[i] != c && s[i])
 			{
 				split[j][l] = s[i];
@@ -80,9 +80,13 @@ static char	**ft_cut(char const *s, char **split, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**split;
+	int		i;
 
+	i = 0;
+	if (!s)
+		return (NULL);
 	split = malloc(sizeof(char *) * (ft_wordcount(s, c) + 1));
 	if (!split)
 		return (NULL);
-	return (ft_cut(s, split, c));
+	return (ft_cut(s, split, c, i));
 }

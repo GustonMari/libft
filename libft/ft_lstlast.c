@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 10:25:15 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/25 10:35:58 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/29 13:20:49 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
+	if (!lst)
+		return (0);
 	while (lst->next)
 		lst = lst->next;
 	return (lst);

@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 11:43:05 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/23 11:45:02 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/29 11:36:07 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	i = 0;
 	s2 = (char *)s;
 	a = (char)c;
-	while (s2[i] && i < n)
+	while (i < n)
 	{
 		if (s2[i] == a)
 			return (&s2[i]);
