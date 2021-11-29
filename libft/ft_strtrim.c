@@ -6,7 +6,7 @@
 /*   By: gmary <gmary@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 11:44:55 by gmary             #+#    #+#             */
-/*   Updated: 2021/11/29 13:49:46 by gmary            ###   ########.fr       */
+/*   Updated: 2021/11/29 14:54:15 by gmary            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@ static int	ft_charisset(char c, char const *set)
 	return (0);
 }
 
-static char	*ft_cut(int begin, int end, int i, char *trim)
+static char	*ft_cut(int begin, int end, char *trim, char const *s1)
 {
+	int		i;
+
+	i = 0;
 	if (begin < end)
 	{
 		while (begin < end)
@@ -42,11 +45,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*trim;
 	int		begin;
 	int		end;
-	int		i;
 
 	if (!s1 || !set)
 		return (NULL);
-	i = 0;
 	begin = 0;
 	end = ft_strlen(s1);
 	while (s1[begin] && ft_charisset(s1[begin], set))
@@ -58,5 +59,5 @@ char	*ft_strtrim(char const *s1, char const *set)
 	trim = malloc(sizeof(char) * ((end - begin) + 1));
 	if (!trim)
 		return (NULL);
-	return (ft_cut(begin, end, i, trim));
+	return (ft_cut(begin, end, trim, s1));
 }
